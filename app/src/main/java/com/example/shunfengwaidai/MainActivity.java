@@ -1,81 +1,99 @@
 package com.example.shunfengwaidai;
 
-import android.content.Context;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.util.Log;
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
-import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
-import com.bigkoo.convenientbanner.holder.Holder;
-import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
+public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
 
-public class MainActivity extends AppCompatActivity implements OnItemClickListener {
 
-    private ConvenientBanner convenientBanner;
-    private ArrayList<Integer> localImages = new ArrayList<Integer>();
+    private MainFragment mainFragment;
+    private OrderFragment orderFragment;
+    private MeesageFragment meesageFragment;
+    private PersonalFragment personalFragment;
+    private String TAG = MainActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        convenientBanner=findViewById(R.id.convenientBanner);
-        for (int position = 1; position < 6; position++) {
-            localImages.add(getResId("ic_test_" + position, R.drawable.class));
-        }
-        convenientBanner.setPages(new CBViewHolderCreator() {
-            @Override
-            public Object createHolder() {
-                return new LocalImageHolderView();
-            }
-        },localImages)
-                .setPointViewVisible(true)
-                //设置自动切换（同时设置了切换时间间隔）
-                .startTurning(2000)
-                .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused})
-                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
-                //设置点击监听事件
-                .setOnItemClickListener(this)
-                //设置手动影响（设置了该项无法手动切换）
-                .setManualPageable(true);
 
+        BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
 
-
+        bottomNavigationBar
+                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_1, "主页"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_3, "订单"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_4, "消息"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_2, "我的"))
+                .initialise();
+        bottomNavigationBar.setTabSelectedListener(this);
+        setDefaultFragment();
     }
+    private void setDefaultFragment() {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        mainFragment = MainFragment.newInstance("位置");
+        transaction.replace(R.id.container, mainFragment);
+        transaction.commit();
+    }
+
+
+
+
     @Override
-    public void onItemClick(int position) {
-        Toast.makeText(this, "position:" + position, Toast.LENGTH_SHORT).show();
-    }
-    private class LocalImageHolderView implements Holder<Integer> {
-        private ImageView imageView;
-
-        @Override
-        public View createView(Context context) {
-            //你可以通过layout文件来创建，不一定是Image，任何控件都可以进行翻页
-            imageView = new ImageView(context);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            return imageView;
+    public void onTabSelected(int position) {
+        Log.d(TAG, "onTabSelected() called with: " + "position = [" + position + "]");
+        FragmentManager fm = this.getFragmentManager();
+        //开启事务
+      FragmentTransaction transaction = fm.beginTransaction();
+        switch (position) {
+            case 0:
+                if (mainFragment == null) {
+                    mainFragment = MainFragment.newInstance("主页");
+                }
+                transaction.replace(R.id.container, mainFragment);
+                break;
+            case 1:
+                if (orderFragment == null) {
+                    orderFragment = OrderFragment.newInstance("订单");
+                }
+                transaction.replace(R.id.container, orderFragment);
+                break;
+            case 2:
+                if (meesageFragment == null) {
+                    meesageFragment = MeesageFragment.newInstance("消息");
+                }
+                transaction.replace(R.id.container, meesageFragment);
+                break;
+            case 3:
+                if (personalFragment == null) {
+                    personalFragment = PersonalFragment.newInstance("我的");
+                }
+                transaction.replace(R.id.container, personalFragment);
+                break;
+            default:
+                break;
         }
+        // 事务提交
+        transaction.commit();
+    }
 
-        @Override
-        public void UpdateUI(Context context, int position, Integer data) {
-            imageView.setImageResource(data);
-        }
+    @Override
+    public void onTabUnselected(int position) {
+        Log.d(TAG, "onTabUnselected() called with: " + "position = [" + position + "]");
+    }
+
+    @Override
+    public void onTabReselected(int position) {
 
     }
 
-    public static int getResId(String variableName, Class<?> c) {
-        try {
-            Field idField = c.getDeclaredField(variableName);
-            return idField.getInt(idField);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
+
+
 
 }
