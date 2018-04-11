@@ -1,15 +1,20 @@
 package com.example.shunfengwaidai;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
@@ -22,13 +27,14 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment implements OnItemClickListener {
+public class MainFragment extends Fragment implements OnItemClickListener{
 
 
     private ConvenientBanner convenientBanner;
     private ArrayList<Integer> localImages = new ArrayList<Integer>();
     private static View view;
     private int[] convenientBannerIndicator;
+
 
     public MainFragment() {
         // Required empty public constructor
@@ -62,6 +68,8 @@ public class MainFragment extends Fragment implements OnItemClickListener {
     private void InitView(){
         convenientBanner = view.findViewById(R.id.convenientBanner);
         convenientBannerIndicator = new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused};
+
+
         for (int position = 1; position < 6; position++) {
             localImages.add(getResId("ic_test_" + position, R.drawable.class));
         }
@@ -91,7 +99,6 @@ public class MainFragment extends Fragment implements OnItemClickListener {
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             return imageView;
         }
-
         @Override
         public void UpdateUI(Context context, int position, Integer data) {
             imageView.setImageResource(data);
@@ -113,4 +120,7 @@ public class MainFragment extends Fragment implements OnItemClickListener {
     public void onItemClick(int position) {
         Toast.makeText(getActivity(), "position:" + position, Toast.LENGTH_SHORT).show();
     }
+
+
+
 }
