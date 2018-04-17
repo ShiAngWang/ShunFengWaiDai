@@ -1,8 +1,11 @@
 package com.example.shunfengwaidai;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
+
+
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     @Override
     public void onTabSelected(int position) {
         Log.d(TAG, "onTabSelected() called with: " + "position = [" + position + "]");
-        FragmentManager fm = this.getFragmentManager();
+        FragmentManager fm = this.getSupportFragmentManager();
         //开启事务
         FragmentTransaction transaction = fm.beginTransaction();
         switch (position) {
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     }
     public void setDefaltFragment(){
-        FragmentManager defalt =this .getFragmentManager();
+        FragmentManager defalt =this .getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = defalt.beginTransaction();
         fragmentTransaction.replace(R.id.tv_content, new MainFragment());
         fragmentTransaction.commit();
