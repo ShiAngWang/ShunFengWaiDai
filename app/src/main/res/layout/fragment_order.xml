@@ -12,16 +12,16 @@ android:orientation="vertical" >
     android:layout_weight="1"
     android:orientation="horizontal"
     android:background="#DCDCDC">
+
     <Button
-        android:onClick="onClick"
         android:id="@+id/btn_first"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="1"
+        android:onClick="onClick"
         android:padding="-5dp"
-        android:textSize="14sp"
-        android:text="订单"
-        />
+        android:text="当前订单"
+        android:textSize="14sp" />
     <Button
         android:onClick="onClick"
         android:id="@+id/btn_second"
