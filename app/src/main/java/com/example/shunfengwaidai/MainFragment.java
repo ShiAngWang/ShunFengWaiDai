@@ -66,7 +66,7 @@ public class MainFragment extends Fragment implements OnItemClickListener{
     }
 
     private void InitView(){
-        convenientBanner = view.findViewById(R.id.convenientBanner);
+        convenientBanner =(ConvenientBanner) view.findViewById(R.id.convenientBanner);
         convenientBannerIndicator = new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused};
 
 
