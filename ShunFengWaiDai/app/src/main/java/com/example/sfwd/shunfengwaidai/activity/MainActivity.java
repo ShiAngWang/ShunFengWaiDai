@@ -1,31 +1,20 @@
 package com.example.sfwd.shunfengwaidai.activity;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.sfwd.shunfengwaidai.R;
-import com.example.sfwd.shunfengwaidai.fragment.FindFragment;
-import com.example.sfwd.shunfengwaidai.fragment.KuaidiFragment;
 import com.example.sfwd.shunfengwaidai.fragment.MainFragment;
 import com.example.sfwd.shunfengwaidai.fragment.MeesageFragment;
 import com.example.sfwd.shunfengwaidai.fragment.OrderFragment;
 import com.example.sfwd.shunfengwaidai.fragment.PersonalFragment;
-
-import com.example.sfwd.shunfengwaidai.fragment.TestFragment;
-import com.example.sfwd.shunfengwaidai.fragment.WaimaiFragment;
-
-import junit.framework.Test;
 
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
@@ -35,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private OrderFragment orderFragment;
     private MeesageFragment meesageFragment;
     private PersonalFragment personalFragment;
-    private FindFragment findFragment;
     private int[] convenientBannerIndicator;
     private String TAG = MainActivity.class.getSimpleName();
     private void InitBNB(){

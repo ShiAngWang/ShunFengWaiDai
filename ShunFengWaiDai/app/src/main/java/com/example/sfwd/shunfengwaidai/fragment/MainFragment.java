@@ -43,7 +43,6 @@ public class MainFragment extends Fragment implements OnItemClickListener {
     private TextView login;
     private CircleImageView btn_fadan;
 
-    public FindFragment findFragment;
 
 
     public MainFragment() {
