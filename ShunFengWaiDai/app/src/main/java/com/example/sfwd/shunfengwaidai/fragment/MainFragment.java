@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +19,14 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.example.sfwd.shunfengwaidai.R;
+import com.example.sfwd.shunfengwaidai.activity.FaDanActivity;
 import com.example.sfwd.shunfengwaidai.activity.LoginActivity;
+import com.example.sfwd.shunfengwaidai.activity.MainActivity;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -35,6 +41,9 @@ public class MainFragment extends Fragment implements OnItemClickListener {
     private int[] convenientBannerIndicator;
 
     private TextView login;
+    private CircleImageView btn_fadan;
+
+    public FindFragment findFragment;
 
 
     public MainFragment() {
@@ -73,7 +82,22 @@ public class MainFragment extends Fragment implements OnItemClickListener {
                                              startActivity(intent);
                                          }
                                      });
+
+            btn_fadan = (CircleImageView) view.findViewById(R.id.btn_fadan);
+            btn_fadan.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(getActivity(), FaDanActivity.class);
+                    startActivity(intent);
+                    //Toast.makeText(getActivity(), "i am an ImageButton in TitleFragment ! ", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
+
+
+
+
 
         //登录按钮的响应
        /* login = (Button) view.findViewById(R.id.btn_main_login);
@@ -91,6 +115,8 @@ public class MainFragment extends Fragment implements OnItemClickListener {
 
         return view;
     }
+
+
 
     private void InitView(){
         convenientBanner =(ConvenientBanner) view.findViewById(R.id.convenientBanner);

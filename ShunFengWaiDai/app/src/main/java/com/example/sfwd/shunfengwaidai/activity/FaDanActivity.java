@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.sfwd.shunfengwaidai.R;
+import com.example.sfwd.shunfengwaidai.fragment.DaigouFragment;
 import com.example.sfwd.shunfengwaidai.fragment.FindFragment;
 import com.example.sfwd.shunfengwaidai.fragment.KuaidiFragment;
 import com.example.sfwd.shunfengwaidai.fragment.MainFragment;
@@ -28,16 +29,16 @@ import com.example.sfwd.shunfengwaidai.fragment.WaimaiFragment;
 import junit.framework.Test;
 
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
+public class FaDanActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
 
 
-    private MainFragment mainFragment;
-    private OrderFragment orderFragment;
-    private MeesageFragment meesageFragment;
-    private PersonalFragment personalFragment;
-    private FindFragment findFragment;
+    private KuaidiFragment kuaidiFragment;
+    private WaimaiFragment waimaiFragment;
+    private DaigouFragment daigouFragment;
+
+   ;
     private int[] convenientBannerIndicator;
-    private String TAG = MainActivity.class.getSimpleName();
+    private String TAG = FaDanActivity.class.getSimpleName();
     private void InitBNB(){
 
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
@@ -50,10 +51,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_DEFAULT)
                 .setActiveColor(R.color.white)
                 .setBarBackgroundColor(R.color.colorPrimary)
-                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_1, "主页"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_3, "订单"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_4, "消息"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_2, "我的"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_1, "快递"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_3, "外卖"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_buttombar_4, "代购"))
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
     }
@@ -66,29 +66,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         FragmentTransaction transaction = fm.beginTransaction();
         switch (position) {
             case 0:
-                if (mainFragment == null) {
-                    mainFragment = MainFragment.newInstance("主页");
-                }
-                transaction.replace(R.id.tv_content, mainFragment);
+
+                    kuaidiFragment = new KuaidiFragment();
+
+                transaction.replace(R.id.tv_content, kuaidiFragment);
                 break;
             case 1:
-                if (orderFragment == null) {
-                    orderFragment = OrderFragment.newInstance("订单");
-                }
-                transaction.replace(R.id.tv_content, orderFragment);
+
+                    waimaiFragment = new WaimaiFragment();
+
+                transaction.replace(R.id.tv_content, waimaiFragment);
                 break;
             case 2:
-                if (meesageFragment == null) {
-                    meesageFragment = MeesageFragment.newInstance("消息");
-                }
-                transaction.replace(R.id.tv_content, meesageFragment);
+
+                daigouFragment = new DaigouFragment();
+
+                transaction.replace(R.id.tv_content, daigouFragment);
                 break;
-            case 3:
-                if (personalFragment == null) {
-                    personalFragment = PersonalFragment.newInstance("我的");
-                }
-                transaction.replace(R.id.tv_content, personalFragment);
-                break;
+
             default:
                 break;
         }
@@ -120,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     public void setDefaltFragment(){
         FragmentManager defalt =this .getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = defalt.beginTransaction();
-        fragmentTransaction.replace(R.id.tv_content, new MainFragment());
+        fragmentTransaction.replace(R.id.tv_content, new KuaidiFragment());
         fragmentTransaction.commit();
     }
 
