@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/simple_navigation_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--内容视图-->
+        <LinearLayout
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+        </LinearLayout>
+
+        <!--左侧滑菜单栏-->
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/navigation_drawer_header"
+            app:menu="@menu/navigation_drawer_menu" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true">
+
+    </com.ashokvarma.bottomnavigation.BottomNavigationBar>
+</RelativeLayout>

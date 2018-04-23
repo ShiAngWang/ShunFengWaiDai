@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/back_login"
+    tools:context="com.example.sfwd.shunfengwaidai.activity.LoginActivity">
+
+    <View
+        android:layout_width="105dp"
+        android:layout_height="60dp"/>
+    <!-- 顶部图片填充区 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="30">
+        <View
+            android:layout_width="105dp"
+            android:layout_height="1dp"/>
+        <!-- 顶部图片 -->
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/community_portrait"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="20dp"
+            android:clickable="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo"
+            app:riv_corner_radius="60dp"/>
+    </LinearLayout>
+
+    <!-- 纵向填充区 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10">
+    </LinearLayout>
+
+    <!-- 手机号码栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2"/>
+        <!-- 编辑区 -->
+        <EditText
+            android:id="@+id/editText_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="4"
+            android:ems="4"
+            android:hint="手机号码"
+            android:inputType="number"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"/>
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+    <!-- 登录密码栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2"/>
+        <!-- 编辑区 -->
+        <EditText
+            android:id="@+id/editText_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="4"
+            android:ems="4"
+            android:hint="登录密码"
+            android:inputType="textPassword"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"/>
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+    <!-- 纵向填充区 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10">
+    </LinearLayout>
+
+    <!-- 登录栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2"/>
+        <!-- 按钮区 -->
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="4"
+            android:background="@drawable/imageviewshape"
+            android:text="登录"
+            android:textColor="#ffffffff"
+            android:textSize="16dp"/>
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+    <!-- 底部按钮填充区 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="32"
+        android:orientation="vertical">
+
+        <!-- 选项框区 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <!-- 横向填充区 -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="4"/>
+            <!-- 选项框 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4">
+
+                <CheckBox
+                    android:id="@+id/remember_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="记住登录信息"
+                    android:textColor="#ffffffff"
+                    android:textSize="16dp"/>
+            </LinearLayout>
+            <!-- 横向填充区 -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="4"/>
+        </LinearLayout>
+
+        <!-- 纵向填充区 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </LinearLayout>
+
+        <!-- 文字按钮填充区 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <!-- 横向填充区 -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="4"/>
+            <!-- 文字按钮栏 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+                <!-- 短信验证码登录按钮 -->
+                <TextView
+                    android:id="@+id/txt_codeLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="短信验证码登录"
+                    android:textColor="#ffffffff"
+                    android:textSize="16dp"/>
+                <!-- 忘记密码按钮 -->
+                <TextView
+                    android:id="@+id/txt_cannot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="忘记密码"
+                    android:textColor="#ffffffff"
+                    android:textSize="16dp"/>
+            </LinearLayout>
+            <!-- 横向填充区 -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="4"/>
+        </LinearLayout>
+
+        <!-- 注册账号按钮填充区 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="6">
+            <!-- 注册账号按钮 -->
+            <TextView
+                android:id="@+id/txt_reg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="注册账号"
+                android:textColor="#ffffffff"
+                android:textSize="16dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
