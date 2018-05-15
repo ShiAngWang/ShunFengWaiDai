@@ -14,9 +14,7 @@
             android:id="@+id/tv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal" >
-
-        </LinearLayout>
+            android:orientation="horizontal" />
 
         <!--左侧滑菜单栏-->
         <android.support.design.widget.NavigationView

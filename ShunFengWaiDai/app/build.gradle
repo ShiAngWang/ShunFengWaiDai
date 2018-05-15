@@ -34,8 +34,11 @@ dependencies {
     implementation files('libs/android-async-http-1.4.8.jar')
     implementation files('libs/httpcore-4.4.5.jar')
 
-
+    //implementation 'co.lujun:androidtagview:1.1.1'
 
     implementation 'com.android.support:support-annotations:20.0.0'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    //Bomb
+    implementation 'cn.bmob.android:bmob-sdk:3.4.7-aar'//bmob-sms ：Bmob单独为短信服务提供的包
+    implementation 'cn.bmob.android:bmob-sms:1.0.1'
 }

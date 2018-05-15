@@ -1,4 +1,4 @@
-package com.example.sfwd.shunfengwaidai.fragment;
+package com.example.sfwd.shunfengwaidai.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -77,7 +77,7 @@ public class HistoryAdapter extends BaseAdapter {
             tools=(HistoryAdapter.Tools)convertView.getTag();
         }
         //绑定数据
-        tools.image.setBackgroundResource((Integer)data.get(position).get("image"));
+        tools.image.setImageResource((Integer)data.get(position).get("image"));
         tools.title.setText((String)data.get(position).get("title"));
         tools.money.setText((String)data.get(position).get("money"));
         tools.receive.setText((String)data.get(position).get("receive"));

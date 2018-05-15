@@ -8,9 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.sfwd.shunfengwaidai.R;
 import com.example.sfwd.shunfengwaidai.activity.DetailActivity;
+import com.example.sfwd.shunfengwaidai.adapter.OrderAdapter;
+import com.example.sfwd.shunfengwaidai.manager.UserManager;
+import com.example.sfwd.shunfengwaidai.untils.MyRestClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,15 +38,65 @@ public class HistoryOrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_history_order,container,false);
         listView = (ListView)view.findViewById(R.id.listview2);
-        List<Map<String, Object>> list=getData();
-        listView.setAdapter(new HistoryAdapter(getActivity(), list));
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), DetailActivity.class);
-                startActivity(intent);
+        RequestParams params = new RequestParams();
+        params.put("userName", UserManager.getInstance().getLoginUserName());
+        params.put("state", "finished");
+        MyRestClient.get("/orderService/getExpress", params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers,
+                                  JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+                try {
+
+                    JSONObject firstEvent = null;
+                    firstEvent = response;
+                    String tweetText = firstEvent.getString("id");
+                    Toast.makeText(getActivity(),tweetText, Toast.LENGTH_SHORT).show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers,
+                                  JSONArray timeline) {
+                // Pull out the first event on the public timeline
+                try {
+                    List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+                    JSONObject firstEvent = null;
+                    for(int i=0;i<timeline.length();i++) {
+                        firstEvent = (JSONObject) timeline.get(i);
+                        Map<String, Object> map=new HashMap<String, Object>();
+                        String tweetText = firstEvent.getString("id");
+                        map.put("image", R.drawable.logo);
+                        map.put("title","取快递");
+                        map.put("money",firstEvent.getString("reward"));
+                        map.put("receive",firstEvent.getString("positionOfGet"));
+                        map.put("send",firstEvent.getString("positionTo"));
+                        map.put("need",firstEvent.getString("expressInfo"));
+                        map.put("image1",R.mipmap.turn);
+                        list.add(map);
+                    }
+                    // Do something with the response
+
+                    listView.setAdapter(new OrderAdapter(getActivity(), list));
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(), DetailActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    Toast.makeText(getActivity(),"id", Toast.LENGTH_SHORT).show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 

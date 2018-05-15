@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +19,7 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.example.sfwd.shunfengwaidai.R;
 import com.example.sfwd.shunfengwaidai.activity.FaDanActivity;
 import com.example.sfwd.shunfengwaidai.activity.LoginActivity;
-import com.example.sfwd.shunfengwaidai.activity.MainActivity;
+import com.example.sfwd.shunfengwaidai.sun.FilterActivity;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -32,17 +30,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment implements OnItemClickListener {
+public class MainFragment extends Fragment implements OnItemClickListener{
 
 
     private ConvenientBanner convenientBanner;
     private ArrayList<Integer> localImages = new ArrayList<Integer>();
-    private static View view;
+    private View view;
     private int[] convenientBannerIndicator;
 
     private TextView login;
-    private CircleImageView btn_fadan;
-
+    private CircleImageView acceptOrder;
+    private CircleImageView viewOrder;
 
 
     public MainFragment() {
@@ -70,6 +68,7 @@ public class MainFragment extends Fragment implements OnItemClickListener {
         }else {
             view = inflater.inflate(R.layout.fragment_main, container, false);
             InitView();
+            //登录按钮的响应
             login = (TextView) view.findViewById(R.id.btn_main_login);
             login.setOnClickListener(new View.OnClickListener()
                                      {
@@ -81,41 +80,38 @@ public class MainFragment extends Fragment implements OnItemClickListener {
                                              startActivity(intent);
                                          }
                                      });
-
-            btn_fadan = (CircleImageView) view.findViewById(R.id.btn_fadan);
-            btn_fadan.setOnClickListener(new View.OnClickListener(){
+            //功能1的响应
+            acceptOrder = (CircleImageView) view.findViewById(R.id.circleImageView1);
+            acceptOrder.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(getActivity(), FaDanActivity.class);
-                    startActivity(intent);
+                public void onClick(View v)
+                {
                     //Toast.makeText(getActivity(), "i am an ImageButton in TitleFragment ! ", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getActivity(), FilterActivity.class);
+                    startActivity(intent);
                 }
             });
-
+            //功能2的响应
+            viewOrder = (CircleImageView) view.findViewById(R.id.circleImageView2);
+            viewOrder.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    //Toast.makeText(getActivity(), "i am an ImageButton in TitleFragment ! ", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getActivity(), FaDanActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
 
 
 
 
 
-        //登录按钮的响应
-       /* login = (Button) view.findViewById(R.id.btn_main_login);
-        login.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                //Toast.makeText(getActivity(), "i am an ImageButton in TitleFragment ! ", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
-
         return view;
     }
-
-
 
     private void InitView(){
         convenientBanner =(ConvenientBanner) view.findViewById(R.id.convenientBanner);
@@ -141,6 +137,27 @@ public class MainFragment extends Fragment implements OnItemClickListener {
                 //设置手动影响（设置了该项无法手动切换）
                 .setManualPageable(true);
     }
+
+
+    public void onClick2(View v) {
+        switch(v.getId()){
+            case R.id.btn_main_login:
+                Intent intent=new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.circleImageView1:
+                Intent intent2=new Intent(getActivity(), FilterActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.circleImageView2:
+                Intent intent3=new Intent(getActivity(), FaDanActivity.class);
+                startActivity(intent3);
+                break;
+            default:
+                break;
+        }
+    }
+
     private class LocalImageHolderView implements Holder<Integer> {
         private ImageView imageView;
 

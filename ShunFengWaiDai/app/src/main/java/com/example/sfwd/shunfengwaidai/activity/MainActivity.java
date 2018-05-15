@@ -1,12 +1,14 @@
 package com.example.sfwd.shunfengwaidai.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -17,7 +19,7 @@ import com.example.sfwd.shunfengwaidai.fragment.OrderFragment;
 import com.example.sfwd.shunfengwaidai.fragment.PersonalFragment;
 
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
 
 
     private MainFragment mainFragment;
@@ -26,7 +28,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private PersonalFragment personalFragment;
     private int[] convenientBannerIndicator;
     private String TAG = MainActivity.class.getSimpleName();
-    private void InitBNB(){
+
+    private void InitBNB() {
 
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
 
@@ -98,18 +101,52 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_drawer);
-
         InitBNB();
-        setDefaltFragment();
-
-
+        setFragment();
 
     }
-    public void setDefaltFragment(){
-        FragmentManager defalt =this .getSupportFragmentManager();
+
+    public void setFragment() {
+        FragmentManager defalt = this.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = defalt.beginTransaction();
-        fragmentTransaction.replace(R.id.tv_content, new MainFragment());
-        fragmentTransaction.commit();
-    }
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            int backcode = bundle.getInt("key");
+            if (backcode == 10) {
+                fragmentTransaction.replace(R.id.tv_content, PersonalFragment.newInstance("我的"));
+                fragmentTransaction.commit();
+            }
+        } else {
+            Intent intent = getIntent();
+            //取出Intent中附加的数据
+            int first = 0;
+            if (intent.getStringExtra("id") != null) {
+                first = Integer.parseInt(intent.getStringExtra("id"));
+            }
 
+            Toast.makeText(MainActivity.this, first + "", Toast.LENGTH_SHORT).show();
+            switch (first) {
+                case 0:
+                    fragmentTransaction.replace(R.id.tv_content, new MainFragment());
+                    break;
+                case 1:
+                    fragmentTransaction.replace(R.id.tv_content, new OrderFragment());
+                    break;
+                case 2:
+                    fragmentTransaction.replace(R.id.tv_content, new MeesageFragment());
+                    break;
+                case 3:
+                    fragmentTransaction.replace(R.id.tv_content, new PersonalFragment());
+                    break;
+                default:
+                    break;
+            }
+            fragmentTransaction.commit();
+        }
+
+
+
+
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.sfwd.shunfengwaidai.fragment;
+package com.example.sfwd.shunfengwaidai.adapter;
 
 /**
  * Created by 士昂 on 2018/4/22.

@@ -8,6 +8,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	private  User user;
 
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -33,9 +34,13 @@ public class User implements Serializable {
 	private String studentId;
 
 	private String school;
+	private  boolean isIdentified;
 
 	//省略getter settet方法、构造方法
 
+	public User getCurrentuser(){
+		return this.user;
+	}
 	public String getUserName() {
 		return userName;
 	}

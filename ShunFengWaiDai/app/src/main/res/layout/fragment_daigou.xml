@@ -7,7 +7,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        //第一行
 
         <TableRow
             android:id="@+id/tableRow1"

@@ -25,6 +25,15 @@ public class FaDanActivity extends Activity {
         setview();
     }
     private void setview() {
+        FragmentManager FM = getFragmentManager();
+        //2.开启一个事务，通过调用beginTransaction方法开启。
+        FragmentTransaction MfragmentTransaction =FM.beginTransaction();
+        //把自己创建好的fragment创建一个对象
+        KuaidiFragment f1 = new KuaidiFragment();
+        //向容器内加入Fragment，一般使用add或者replace方法实现，需要传入容器的id和Fragment的实例。
+        MfragmentTransaction.replace(R.id.fadan_content,f1);
+        //提交事务，调用commit方法提交。
+        MfragmentTransaction.commit();
         button01 = (Button)findViewById(R.id.btn_kuaidi);
         button01.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -71,17 +71,19 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
+
                 android:id="@+id/circleImageView1"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:src="@android:color/holo_green_light"
-                app:layout_constraintEnd_toStartOf="@+id/btn_fadan"
+                app:layout_constraintEnd_toStartOf="@+id/circleImageView2"
                 tools:layout_editor_absoluteY="216dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_1"
+                android:textColor="@color/black"
                 android:textAlignment="center"
                 android:textSize="15sp"/>
         </LinearLayout>
@@ -94,20 +96,20 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/btn_fadan"
+                android:id="@+id/circleImageView2"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:src="@android:color/holo_purple"
-                app:layout_constraintEnd_toStartOf="@+id/btn_fadan"
+                app:layout_constraintEnd_toStartOf="@+id/circleImageView2"
                 tools:layout_editor_absoluteY="216dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_2"
+                android:textColor="@color/black"
                 android:textAlignment="center"
                 android:textSize="15sp"/>
-
         </LinearLayout>
 
         <LinearLayout
@@ -121,13 +123,14 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:src="@android:color/holo_blue_bright"
-                app:layout_constraintEnd_toStartOf="@+id/btn_fadan"
+                app:layout_constraintEnd_toStartOf="@+id/circleImageView2"
                 tools:layout_editor_absoluteY="216dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_3"
+                android:textColor="@color/black"
                 android:textAlignment="center"
                 android:textSize="15sp"/>
         </LinearLayout>
@@ -144,13 +147,14 @@
                 android:layout_height="55dp"
 
                 android:src="@android:color/holo_red_light"
-                app:layout_constraintEnd_toStartOf="@+id/btn_fadan"
+                app:layout_constraintEnd_toStartOf="@+id/circleImageView2"
                 tools:layout_editor_absoluteY="216dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_4"
+                android:textColor="@color/black"
                 android:textAlignment="center"
                 android:textSize="15sp"/>
         </LinearLayout>

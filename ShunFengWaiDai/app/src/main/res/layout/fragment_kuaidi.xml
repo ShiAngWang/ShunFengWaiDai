@@ -1,94 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-        //第一行
 
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:gravity="center">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/username1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="用户名："
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/edituname1"
-                android:layout_width="wrap_content"
+                android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:minWidth="200px"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/phone1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="电话："
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/editPhone1"
-                android:layout_width="wrap_content"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:minWidth="200px"
-                android:textSize="20sp" />
-        </TableRow>
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:text="物品信息"
+            android:text="收货地点:"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp"/>
 
-        //第二行
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editPort1"
+            android:layout_width="235dp"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:minWidth="200px"
+            android:textSize="20sp"/>
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:text="收货地点:"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/editPort1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="200px"
-                android:textSize="20sp" />
-        </TableRow>
-
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,18 +84,15 @@
 
             <EditText
                 android:id="@+id/editEmail1"
-                android:layout_width="wrap_content"
+                android:layout_width="235dp"
                 android:layout_height="wrap_content"
                 android:minWidth="200px"
-                android:textSize="20sp" />
-        </TableRow>
+                android:textSize="20sp"/>
+        </LinearLayout>
 
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -123,19 +103,17 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-        </TableRow>
+            <EditText
+                android:id="@+id/shortMessage"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"/>
 
-        <EditText
-            android:id="@+id/shortMessage"
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -148,19 +126,16 @@
 
             <EditText
                 android:id="@+id/editTime"
-                android:layout_width="wrap_content"
+                android:layout_width="235dp"
                 android:layout_height="wrap_content"
                 android:minWidth="200px"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
-            android:id="@+id/tableRow6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -173,38 +148,40 @@
 
             <EditText
                 android:id="@+id/editMoney"
-                android:layout_width="wrap_content"
+                android:layout_width="235dp"
                 android:layout_height="wrap_content"
                 android:minWidth="200px"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
-            android:layout_marginTop="50dp"
-            android:id="@+id/tableRow7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-        <Button
-            android:id="@+id/buFadan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:background="@color/green"
-            android:text="发单" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@color/white"
+                android:layout_marginLeft="20dp"
+                android:text="发单"
+                android:textSize="16dp"/>
             <Button
                 android:id="@+id/buCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
-                android:background="@color/green"
-                android:text="取消" />
-        </TableRow>
+                android:background="@color/white"
+                android:text="取消"
+                android:layout_weight="0.5"
+                android:textSize="16dp"
+                android:layout_marginRight="20dp"/>
 
+        </LinearLayout>
 
-
-
-    </LinearLayout>
 
 </LinearLayout>

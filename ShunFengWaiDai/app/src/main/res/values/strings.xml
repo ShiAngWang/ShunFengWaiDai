@@ -6,9 +6,9 @@
     <string name="hello_personal_fragment" />
     <string name="hello_order_fragment" />
     <string name="hello_message_fragment" />
-    <string name="_1">功能1</string>
+    <string name="_1">接单</string>
     <string name="_3">功能3</string>
-    <string name="_2">功能2</string>
+    <string name="_2">发单</string>
     <string name="_4">功能4</string>
     <string name="drawer_open">drawer_open</string>
     <string name="drawer_close">drawer_close</string>
