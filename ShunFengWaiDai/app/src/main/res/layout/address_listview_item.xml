@@ -1,46 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:id="@+id/name"
-            android:layout_marginStart="20dp"
-            android:textSize="20sp"
-            android:text="123"/>
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:id="@+id/name"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"
+                android:text="123"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:id="@+id/phonenumber"
+                android:text="123"
+                android:layout_marginStart="20dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:textSize="18sp"
-            android:id="@+id/phonenumber"
+            android:textColor="@color/grey"
+            android:textSize="16sp"
+            android:layout_marginStart="20dp"
             android:text="123"
-            android:layout_marginStart="20dp"/>
+            android:id="@+id/address" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     </LinearLayout>
 
-    <View
+    <CheckBox
+        android:id="@+id/checkBox"
         android:layout_width="match_parent"
-        android:layout_height="4dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/grey"
-        android:textSize="16sp"
-        android:layout_marginStart="20dp"
-        android:text="123"
-        android:id="@+id/address" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/whitesmoke"/>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="CheckBox" />
+
 
 </LinearLayout>

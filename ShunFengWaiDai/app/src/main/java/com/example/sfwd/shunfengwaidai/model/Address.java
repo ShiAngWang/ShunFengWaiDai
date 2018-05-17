@@ -8,6 +8,16 @@ public class Address implements Parcelable{
     private String address;
     private  String name;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private  int id;
+
     protected Address(Parcel in) {
         phonenumber = in.readString();
         address = in.readString();

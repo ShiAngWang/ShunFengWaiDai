@@ -1,35 +1,58 @@
 package com.example.sfwd.shunfengwaidai.adapter;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
-
-
 import com.example.sfwd.shunfengwaidai.R;
 import com.example.sfwd.shunfengwaidai.model.Address;
-
+import com.example.sfwd.shunfengwaidai.untils.DBHelper;
 import java.util.ArrayList;
 
-public class AddAddressAdapter extends BaseAdapter {
+public class AddAddressAdapter extends RecyclerView.Adapter<AddAddressAdapter.MyHolder> {
     private ArrayList<Address> data;
     private Context mContext;
+    private OnItemClickListener mItemClickListener;
     public AddAddressAdapter(Context mContext, ArrayList<Address> data) {
         super();
         this.mContext = mContext;
         this.data = data;
     }
-    @Override
-    public int getCount() {
-        return data.size();
+
+
+    public interface OnItemClickListener{
+        void onItemClick(View view,int Position,int i);
+    }
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.mItemClickListener = itemClickListener;
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.address_listview_item, parent,false);
+        MyHolder holder = new MyHolder(view);
+        return holder;
+
+    }
+
+    @Override
+    public void onBindViewHolder(final MyHolder holder, final int position) {
+        holder.name.setText(data.get(position).getName());
+        holder.phonenumber.setText(data.get(position).getPhonenumber());
+        holder.address.setText(data.get(position).getAddress());
+        if(mItemClickListener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    mItemClickListener.onItemClick(holder.itemView, position,getItemCount());
+
+                }
+            });
+        }
     }
 
     @Override
@@ -38,28 +61,30 @@ public class AddAddressAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        ViewHolder holder = null;
-        if(holder==null){
-            convertView= inflater.inflate(R.layout.address_listview_item,null);
-            holder = new ViewHolder();
-            holder.address=convertView.findViewById(R.id.address);
-            holder.name=convertView.findViewById(R.id.name);
-            holder.phonenumber=convertView.findViewById(R.id.phonenumber);
-            convertView.setTag(holder);
-        }else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        holder.name.setText(data.get(i).getName());
-        holder.phonenumber.setText(data.get(i).getPhonenumber());
-        holder.address.setText(data.get(i).getAddress());
-        return convertView;
+    public int getItemCount() {
+        return data.size();
     }
-    static class ViewHolder{
-        TextView name;
-        TextView phonenumber;
-        TextView address;
+
+    public ArrayList<Address> remove(int i){
+        DBHelper dbHelper=new DBHelper(mContext,1);
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
+        database.delete("addressitem", "name=? and phonenumber=? and address=?",
+                new String[] { data.get(i).getAddress(),data.get(i).getPhonenumber() ,data.get(i).getAddress()});
+        data.remove(i);
+        database.close();
+        return data;
+
+    }
+     class MyHolder extends RecyclerView.ViewHolder {
+         protected TextView name;
+         protected TextView phonenumber;
+         protected TextView address;
+         public MyHolder(View view) {
+             super(view);
+             name =(TextView) view.findViewById(R.id.name);
+             phonenumber =(TextView) view.findViewById(R.id.phonenumber);
+             address =(TextView) view.findViewById(R.id.address);
+         }
+
     }
 }

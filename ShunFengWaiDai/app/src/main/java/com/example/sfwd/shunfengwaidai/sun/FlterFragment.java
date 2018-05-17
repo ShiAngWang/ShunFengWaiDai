@@ -391,9 +391,4 @@ public class FlterFragment extends Fragment {
 //    {
 //        Toast.makeText(this, "点击弹出框外部关闭窗口~", Toast.LENGTH_SHORT).show();
 //    }
-
-
-
-
-
 }
