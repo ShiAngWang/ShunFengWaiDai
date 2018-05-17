@@ -89,29 +89,11 @@
         android:id="@+id/menu"
         android:background="@color/beige"
         android:orientation="vertical">
-        <!--<include layout="@layout/fragment_flter"/>-->
-        <!--<android.support.v4.view.ViewPager-->
-            <!--android:id="@+id/viewPager"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-            <!--<Button-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content" />-->
-            <!--&lt;!&ndash;<include layout="@layout/fragment_flter"/>&ndash;&gt;-->
-        <!--</android.support.v4.view.ViewPager>-->
-
-
-        <!--<ListView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/list">-->
-        <!--</ListView>-->
-        <FrameLayout
-            android:layout_width="300dp"
+        <fragment
+            android:id="@+id/fragment_filter"
             android:layout_height="match_parent"
-            android:id="@+id/menu2">
-            <include layout="@layout/fragment_flter"/>
-        </FrameLayout>
+            android:layout_width="match_parent"
+            android:name="com.example.sfwd.shunfengwaidai.sun.FlterFragment"/>
 
 
 

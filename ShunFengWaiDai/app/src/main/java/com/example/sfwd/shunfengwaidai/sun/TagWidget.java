@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.example.sfwd.shunfengwaidai.R;
 
 public class TagWidget extends LinearLayout{
-    private ImageView mImg;
     private TextView mTxv;
     private boolean isSelected = false;
 
@@ -50,18 +49,11 @@ public class TagWidget extends LinearLayout{
         setMinimumWidth((int) mDensity * 80);
 
         setBackgroundResource(R.color.beige);
-
-        mImg = new ImageView(getContext());
-        mImg.setScaleType(ScaleType.CENTER_INSIDE);
-        mImg.setImageResource(R.mipmap.ic_launcher_round);
-        mImg.setVisibility(View.GONE);
-        addView(mImg);
-
         mTxv = new TextView(getContext());
         mTxv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-        mTxv.setTextColor(Color.GRAY);
+        mTxv.setTextColor(Color.BLACK);
         mTxv.setGravity(Gravity.CENTER);
-        mTxv.setText("");
+        mTxv.setText("选则");
         addView(mTxv);
     }
 
@@ -74,14 +66,11 @@ public class TagWidget extends LinearLayout{
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
 
-        LayoutParams parentParams = (LayoutParams) getLayoutParams();
+        LinearLayout.LayoutParams parentParams = (LayoutParams) getLayoutParams();
         parentParams.width = (int) mDensity * 80;
         parentParams.height = (int) mDensity * 28;
         setLayoutParams(parentParams);
 
-        LayoutParams params = (LayoutParams) mImg.getLayoutParams();
-        params.setMarginStart((int) mDensity * 4);
-        mImg.setLayoutParams(params);
     }
 
     @Override
@@ -95,13 +84,13 @@ public class TagWidget extends LinearLayout{
     public void toggle() {
         isSelected = !isSelected;
         if (isSelected) {
-            mImg.setVisibility(View.VISIBLE);
+//            mImg.setVisibility(View.VISIBLE);
             mTxv.setTextColor(Color.RED);
-            setBackgroundResource(R.color.red);
+            setBackgroundResource(R.color.green);
         } else {
-            mImg.setVisibility(View.GONE);
-            mTxv.setTextColor(Color.GRAY);
-            setBackgroundResource(R.color.grey);
+//            mImg.setVisibility(View.GONE);
+            mTxv.setTextColor(Color.BLACK);
+            setBackgroundResource(R.color.beige);
         }
     }
 
@@ -135,6 +124,9 @@ public class TagWidget extends LinearLayout{
      */
     public boolean getStatus() {
         return isSelected;
+    }
+    public void setStatus(boolean isSelected) {
+        this.isSelected=isSelected;
     }
 
     private float getScreenDensity() {

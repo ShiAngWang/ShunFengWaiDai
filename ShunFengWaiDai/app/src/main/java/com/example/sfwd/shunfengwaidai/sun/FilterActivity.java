@@ -129,18 +129,7 @@ public class FilterActivity extends BaseActivity{
         bFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                from=Location.RIGHT.ordinal();
-//                initFilterFragement();
-                FlterFragment fragment= new FlterFragment();
-//                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.menu,flterFragment);
-//                fragmentTransaction.commit();
-                android.support.v4.app.Fragment fragment1=new FlterFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                Bundle bundle = new Bundle();
-                bundle.putString("departmentName","");
-                fragment.setArguments(bundle);
-                fragmentManager.beginTransaction().replace(R.id.menu, fragment1).commit();
+//
 
                 drawerLayout=findViewById(R.id.draw);
                 drawerLayout.openDrawer(GravityCompat.END);
@@ -209,22 +198,6 @@ public class FilterActivity extends BaseActivity{
 
             }
         });
-
-//        for (int i = 0; i < 3; i++) {
-//            Map<String, Object> item2 = new HashMap<String, Object>();
-//            item2.put("style","地点" );
-//            item2.put("tag", "学活16号楼");
-//            item2.put("qujian", "地点");
-//            data2.add(item2);
-//        }
-//        simpleAdapter2 = new SimpleAdapter(
-//                this,
-//                data2,
-//                R.layout.item_flter,
-//                new String[]{"style","tag","qujian"},
-//                new int[]{R.id.text, R.id.tag, R.id.text2}
-//        );
-//        listView2.setAdapter(simpleAdapter2);
 
     }
 
