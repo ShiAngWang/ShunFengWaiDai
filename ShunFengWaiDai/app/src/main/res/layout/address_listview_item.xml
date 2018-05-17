@@ -52,10 +52,10 @@
 
     <CheckBox
         android:id="@+id/checkBox"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="CheckBox" />
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:theme="@style/My_CheckBox"
+        android:layout_gravity="center" />
 
 
 </LinearLayout>

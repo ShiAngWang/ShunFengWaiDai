@@ -8,6 +8,16 @@ public class Address implements Parcelable{
     private String address;
     private  String name;
 
+    public boolean getChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    private boolean isChecked;
+
     public int getId() {
         return id;
     }
@@ -22,6 +32,7 @@ public class Address implements Parcelable{
         phonenumber = in.readString();
         address = in.readString();
         name = in.readString();
+
     }
 
     public static final Creator<Address> CREATOR = new Creator<Address>() {
