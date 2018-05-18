@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#000000"
+    android:orientation="vertical">
+
+
+    <View
+        android:layout_height="0.5dip"
+        android:background="#686868"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="本科"
+        android:textSize="18dp"
+        android:textColor="#000000"/>
+    <View
+        android:layout_height="0.5dip"
+        android:background="#686868"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:id="@+id/title3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="硕士"
+        android:textSize="18dp"
+        android:textColor="#000000"/>
+    <View
+        android:layout_height="0.5dip"
+        android:background="#686868"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:id="@+id/title4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="博士"
+        android:textSize="18dp"
+        android:textColor="#000000"/>
+    <View
+        android:layout_height="8dp"
+        android:background="#EDEDED"
+        android:layout_width="match_parent"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="取消"
+        android:textSize="18dp"
+        android:textColor="#000000"/>
+
+
+
+</LinearLayout>

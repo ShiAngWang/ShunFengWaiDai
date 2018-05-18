@@ -21,6 +21,10 @@
         android:padding="-5dp"
         android:text="当前订单"
         android:textSize="14sp" />
+    <View
+        android:layout_height="match_parent"
+        android:background="#686868"
+        android:layout_width="0.5dip"/>
     <Button
         android:onClick="onClick"
         android:id="@+id/btn_second"
