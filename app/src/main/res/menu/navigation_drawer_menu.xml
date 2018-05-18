@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_green"
+            android:icon="@drawable/ic_buttombar_1"
+            android:title="Green" />
+        <item
+            android:id="@+id/item_blue"
+            android:icon="@drawable/ic_buttombar_2"
+            android:title="Blue" />
+        <item
+            android:id="@+id/item_pink"
+            android:icon="@drawable/ic_buttombar_3"
+            android:title="Pink" />
+    </group>
+
+</menu>

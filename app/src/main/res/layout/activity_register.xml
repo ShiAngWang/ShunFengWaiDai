@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_reg"
+    android:orientation="vertical"
+    tools:context="com.example.sfwd.shunfengwaidai.activity.RegisterActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/header_bar"
+        android.background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#00000000"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btn_reg_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="left"
+            android:background="@android:drawable/ic_menu_revert"
+            />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="注册"
+            android:textColor="#FFFFF0"
+            android:textSize="20dp"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <!-- 顶部图片填充区 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <View
+            android:layout_width="105dp"
+            android:layout_height="2dp"/>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/community_portrait"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="20dp"
+            android:clickable="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo"
+            app:riv_corner_radius="65dp"/>
+        <!-- 顶部图片 -->
+    </LinearLayout>
+
+    <View
+        android:layout_width="105dp"
+        android:layout_height="60dp"/>
+    <!-- 手机号码栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="60dp"
+            android:layout_height="1dp"
+            />
+        <!-- 编辑区 -->
+        <EditText
+            android:id="@+id/edt_phone"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:ems="4"
+            android:hint="手机号码"
+            android:inputType="number"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"/>
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+           />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="60dp"
+            android:layout_height="1dp"
+            />
+        <!-- 编辑区 -->
+        <EditText
+            android:id="@+id/edt_code"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:ems="4"
+            android:hint="验证码"
+            android:inputType="textPassword"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"/>
+
+        <Button
+            android:id="@+id/btn_get_code"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/imageviewshape"
+            android:text="获取验证码"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="#FFFFF0"/>
+
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            />
+    </LinearLayout>
+
+    <!-- 密码栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="60dp"
+            android:layout_height="1dp"
+            />
+        <!-- 编辑区 -->
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:ems="4"
+            android:hint="输入密码"
+            android:inputType="number"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"/>
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            />
+    </LinearLayout>
+    <!-- q密码栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="60dp"
+            android:layout_height="1dp"
+            />
+        <!-- 编辑区 -->
+        <EditText
+            android:id="@+id/editText_password"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:ems="4"
+            android:hint="确认密码"
+            android:inputType="textPassword"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"/>
+        <!-- 横向填充区 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+           />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/imageviewshape"
+        android:text="注册"
+        android:textColor="#ffffffff"
+        android:textSize="16dp"/>
+
+    <!-- 纵向填充区 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    </LinearLayout>
+
+
+</LinearLayout>
