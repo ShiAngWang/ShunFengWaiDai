@@ -100,7 +100,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener,View
         switch (view.getId()) {
             case R.id.btn_first:
                 myviewpager.setCurrentItem(0);
-                //cursorAnim(0);
+                cursorAnim(0);
                 break;
             case R.id.btn_second:
                 myviewpager.setCurrentItem(1);
@@ -117,10 +117,15 @@ public class OrderFragment extends Fragment implements View.OnClickListener,View
 
     @Override
     public void onPageSelected(int arg0) {
+        if(widthArgs==null){
+            widthArgs = new int[]{btn_order.getWidth(),
+                    btn_history_order.getWidth(),};
+        }
         //每次滑动首先重置所有按钮的颜色
         resetButtonColor();
         //将滑动到的当前按钮颜色设置为红色
         btnArgs[arg0].setTextColor(Color.RED);
+        cursorAnim(arg0);
     }
 
     @Override

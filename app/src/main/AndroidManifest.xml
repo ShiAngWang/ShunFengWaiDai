@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sfwd.shunfengwaidai">
 
@@ -28,12 +28,34 @@
         android:supportsRtl="true"
         android:theme="@style/Mock">
         <activity android:name=".activity.MainActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".activity.DetailActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".sun.FilterActivity" />
+        <activity android:name=".sun.BaseActivity" />
+        <activity android:name=".activity.FaDanActivity" />
+        <activity android:name=".activity.IdentifyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activity.BachlorIdentifyActivity" />
+        <activity android:name=".activity.BasicInformationActivity" />
+        <activity android:name=".activity.CardNumberActivity" />
+        <activity android:name=".activity.DetailAdressActivity" />
+        <activity android:name=".activity.NameActivity"></activity>
+
         <activity android:name=".activity.DetailActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegisterActivity" />
@@ -42,6 +64,7 @@
         <activity android:name=".activity.FaDanActivity" />
         <activity android:name=".activity.AddAddressActivity" />
         <activity android:name=".activity.AddAnItemActivity"></activity>
+
     </application>
 
 </manifest>

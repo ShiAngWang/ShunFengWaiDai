@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
 
     <style name="Mock" parent="Theme.AppCompat.NoActionBar">
 
@@ -21,8 +21,17 @@
     <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@android:color/white</item>
     </style>
+
+    <!-- CustomCheckBox theme -->
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+
+
+
     <style name="My_CheckBox" parent="@android:style/Widget.Material.CompoundButton.CheckBox">
         <item name="android:colorControlActivated">@color/green</item>
         <item name="android:colorControlNormal">@color/colorPrimary</item>
     </style>
+
 </resources>
