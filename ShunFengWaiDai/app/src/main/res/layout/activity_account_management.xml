@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDEDED"
+    tools:context="com.example.sfwd.shunfengwaidai.activity.AccountManagementActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/line1"
+        android:background="#FFFFFF">
+
+        <Button
+            android:onClick="onClick"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:id="@+id/back"
+            android:background="@android:drawable/ic_menu_revert" />
+        <View
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:background="#CCCCCC"
+            android:layout_width="1dip"/>
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="账号管理"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_below="@id/line1">
+
+        <LinearLayout
+            android:id="@+id/username_line"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/backdown">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="22dp"
+                android:layout_margin="8dp"
+                android:text="用户名"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+            />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="right"
+                android:paddingEnd="10dp"
+                android:text="13336471588"
+                android:textColor="#999999"
+                android:textSize="18dp" />
+        </LinearLayout>
+        <View
+            android:layout_height="0.5dip"
+            android:background="#686868"
+            android:layout_width="match_parent"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username_line"
+            android:id="@+id/password_line"
+            android:background="@drawable/backdown"
+            android:orientation="horizontal"
+            android:onClick="onClick">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="22dp"
+                android:layout_margin="8dp"
+                android:text="密码"
+                android:textColor="#000000"
+                android:textSize="18dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="right"
+                    android:text="******"
+                    android:id="@+id/password"
+                    android:paddingEnd="10dp"
+                    android:textColor="#999999"
+                    android:textSize="18dp"
+                    android:layout_weight="5"/>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/image1"
+                    android:background="@drawable/turn"
+                    android:layout_weight="1"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:id="@+id/modify"
+            android:text="立即修改"
+            android:layout_below="@id/line3"
+            android:background="#DEDEDE"
+            android:textColor="#C7C7C7"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

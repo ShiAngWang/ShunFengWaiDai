@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        android:textColor="#0000"
+
+        <EditText
+            android:id="@+id/edit_Daiqu"
+            android:layout_width="fill_parent"
+            android:layout_height="361dp"
+            android:gravity="top|left"
+            android:hint="请复制快递短信"
+            android:textColor="#2f4f4f"
+            android:textColorHint="#238745" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:background="#686868" />
+
+        <LinearLayout
+            android:id="@+id/text_qushou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="186dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="收货地点" />
+
+            <Button
+                android:id="@+id/button2_daiqu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/green"
+                android:text="选择收货地点" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:background="#686868" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/time_songda"
+                android:layout_width="182dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="送达时间" />
+
+            <EditText
+                android:id="@+id/edit_texttime"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:maxLength="200"
+                android:textColor="#2f4f4f"
+                android:textColorHint="#238745" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:background="#686868" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/money_xuanshang"
+                android:layout_width="182dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="悬赏金额" />
+
+            <EditText
+                android:id="@+id/daiqu_money"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:maxLength="200"
+                android:textColor="#2f4f4f"
+                android:textColorHint="#238745" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:background="#686868" />
+
+        <Button
+            android:id="@+id/daiqu_fadanB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/green"
+            android:text="发单" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
