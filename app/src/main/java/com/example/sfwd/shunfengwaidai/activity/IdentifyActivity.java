@@ -74,8 +74,8 @@ public class IdentifyActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onSuccess(int statusCode, Header[] headers,
                                           JSONObject response) {
-                        UserManager.getInstance().getUser().setRealname("realname");
-                        UserManager.getInstance().getUser().setPassWord("ID");
+                        UserManager.getInstance().getUser().setRealname(Name.getText().toString());
+                        UserManager.getInstance().getUser().setPassWord(Password.getText().toString());
                         // If the response is JSONObject instead of expected JSONArray
                     }
 

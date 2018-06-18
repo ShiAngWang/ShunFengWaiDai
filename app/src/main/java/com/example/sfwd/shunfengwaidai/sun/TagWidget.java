@@ -48,7 +48,7 @@ public class TagWidget extends LinearLayout{
         setMinimumHeight((int) mDensity * 28);
         setMinimumWidth((int) mDensity * 80);
 
-        setBackgroundResource(R.color.beige);
+        setBackgroundResource(R.color.white);
         mTxv = new TextView(getContext());
         mTxv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
         mTxv.setTextColor(Color.BLACK);
@@ -90,7 +90,7 @@ public class TagWidget extends LinearLayout{
         } else {
 //            mImg.setVisibility(View.GONE);
             mTxv.setTextColor(Color.BLACK);
-            setBackgroundResource(R.color.beige);
+            setBackgroundResource(R.color.white);
         }
     }
 

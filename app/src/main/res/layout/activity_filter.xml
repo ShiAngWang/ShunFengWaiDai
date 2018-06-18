@@ -23,21 +23,20 @@
             android:gravity="center"
             android:background="@color/beige">
             <CheckBox
-            android:id="@+id/sort"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@null"
-            android:button="@null"
-            android:drawablePadding="5dp"
-            android:gravity="center"
-            android:paddingRight="30dp"
-            android:paddingLeft="30dp"
-            android:text="综合排序"
-            android:drawableRight="@drawable/selector_stock_arrow"
-            android:textColor="@drawable/selector_text_stock"
-            android:textSize="15dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:id="@+id/sort"
+                android:background="@null"
+                android:button="@null"
+                android:drawablePadding="3dp"
+                android:layout_gravity="center"
+                android:paddingRight="30dp"
+                android:paddingLeft="30dp"
+                android:text="综合排序"
+                android:textSize="15dp"
+                android:drawableRight="@drawable/selector_stock_arrow"
+                android:textColor="@drawable/selector_text_stock"
+                android:layout_weight="1"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -74,8 +73,12 @@
             android:drawableRight="@mipmap/ic_buttombar_3"/>
 
     </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/white"/>
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listview">
     </ListView>
@@ -83,35 +86,17 @@
 
 
     <LinearLayout
-        android:layout_width="280dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:id="@+id/menu"
         android:background="@color/beige"
         android:orientation="vertical">
-        <!--<include layout="@layout/fragment_flter"/>-->
-        <!--<android.support.v4.view.ViewPager-->
-            <!--android:id="@+id/viewPager"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-            <!--<Button-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content" />-->
-            <!--&lt;!&ndash;<include layout="@layout/fragment_flter"/>&ndash;&gt;-->
-        <!--</android.support.v4.view.ViewPager>-->
 
-
-        <!--<ListView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/list">-->
-        <!--</ListView>-->
-        <FrameLayout
-            android:layout_width="300dp"
+        <fragment android:id="@+id/fragment_filter"
             android:layout_height="match_parent"
-            android:id="@+id/menu2">
-            <include layout="@layout/fragment_flter"/>
-        </FrameLayout>
+            android:layout_width="match_parent"
+            android:name="com.example.sfwd.shunfengwaidai.sun.FlterFragment"/>
 
 
 

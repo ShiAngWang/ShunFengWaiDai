@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_drawer);
-
         InitBNB();
         setFragment();
 
@@ -109,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     public void setFragment() {
         FragmentManager defalt = this.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = defalt.beginTransaction();
+        fragmentTransaction.replace(R.id.tv_content, MainFragment.newInstance("主页"));
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             int backcode = bundle.getInt("key");
@@ -127,22 +127,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             Toast.makeText(MainActivity.this, first + "", Toast.LENGTH_SHORT).show();
             switch (first) {
                 case 0:
-                    fragmentTransaction.replace(R.id.tv_content, new MainFragment());
+                    fragmentTransaction.replace(R.id.tv_content, MainFragment.newInstance("主页"));
                     break;
                 case 1:
-                    fragmentTransaction.replace(R.id.tv_content, new OrderFragment());
-                    break;
-                case 2:
-                    fragmentTransaction.replace(R.id.tv_content, new MeesageFragment());
+                    fragmentTransaction.replace(R.id.tv_content, OrderFragment.newInstance("订单"));
                     break;
                 case 3:
-                    fragmentTransaction.replace(R.id.tv_content, new PersonalFragment());
+                    fragmentTransaction.replace(R.id.tv_content, PersonalFragment.newInstance("我的"));
                     break;
                 default:
                     break;
             }
-            fragmentTransaction.commit();
+
         }
+        fragmentTransaction.commit();
 
     }
     public void onClick(View view){

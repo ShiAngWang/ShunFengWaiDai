@@ -1,6 +1,7 @@
 package com.example.sfwd.shunfengwaidai.sun;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ListView;
 
+import com.example.sfwd.shunfengwaidai.InfoList;
 import com.example.sfwd.shunfengwaidai.R;
 
 import java.util.HashMap;
@@ -23,13 +24,14 @@ public class FlterFragment extends Fragment {
     private EditText mMinPriceEdt, mMaxPriceEdt;
     private EditText mMinTimeEdt, mMaxTimeEdt;
     private EditText mMinDistanceEdt, mMaxDistanceEdt;
-    HashMap<String, String> info;
+    HashMap<String, String> infomation;
+    InfoList infoList;
 
-    //    private OnSearchListener mSearchCallback;
+    private OnSearchListener mSearchCallback;
     public static final String SEPARATOR = "@";
-    //    public interface OnSearchListener {
-//        void onFilterCompleted();
-//    }
+    public interface OnSearchListener {
+        void onFilterCompleted(HashMap<String, String> infomation);
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +49,11 @@ public class FlterFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
     }
-    //    public void setSearchCallbackListener(OnSearchListener callbackListener) {
-//        this.mSearchCallback = callbackListener;
-//    }
+    public void setSearchCallbackListener(OnSearchListener callbackListener) {
+        this.mSearchCallback = callbackListener;
+    }
     private void initView(View view) {
+            infoList=new InfoList();
         mTAGWidget1 = new TagWidget[4];
         mTAGWidget2 = new TagWidget[4];
         mTAGWidget3 = new TagWidget[4];
@@ -87,9 +90,9 @@ public class FlterFragment extends Fragment {
      */
     private void setTAGWidgetsContent() {
         String[] contents1 = {"取快递", "取外卖", "代买", "紧急"};
-        String[] contents2={"<1","1-2","2-5",">5"};
-        String[] contents3={"<0.5","0.5-1","1-3",">3"};
-        String[] contents4={"<10","10-30","30-60","60以上"};
+        String[] contents2={"$1","$2","$3","$5"};
+        String[] contents3={"0.5km","1km","2km","3km"};
+        String[] contents4={"10","20","30","60"};
         for (int i = 0; i < 4; i++) {
             mTAGWidget1[i].setContent(contents1[i]);
             mTAGWidget2[i].setContent(contents2[i]);
@@ -114,7 +117,7 @@ public class FlterFragment extends Fragment {
             widget.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clearToggle(mTAGWidget3);
+                    clearToggle(mTAGWidget2);
                     widget.toggle();
                 }
             });
@@ -176,11 +179,12 @@ public class FlterFragment extends Fragment {
      * 确认筛选条件
      */
     private void filterConfirm() {
-//        if (mSearchCallback == null) {
-//            return;
-//        }
-//        mSearchCallback.onFilterCompleted();
-        info=getFilter();
+        infomation=getFilter();
+        if (mSearchCallback == null) {
+            return;
+        }
+        mSearchCallback.onFilterCompleted(infomation);
+        resetFilter();
     }
     /**
      * 获取筛选信息
@@ -191,16 +195,16 @@ public class FlterFragment extends Fragment {
         String price=getFilter(mTAGWidget2);
         String distance=getFilter(mTAGWidget3);
         String time=getFilter(mTAGWidget4);
-        if (style.length() > 0) {
+        if (style!=null) {
             filterParams.put("style", style);
         }
-        if (price.length() > 0) {
+        if (price!=null) {
             filterParams.put("price", price);
         }
-        if(distance.length()>0){
+        if(distance!=null){
             filterParams.put("distance",distance);
         }
-        if (time.length() > 0) {
+        if (time!=null) {
             filterParams.put("time", time);
         }
         filterParams.put("priceSec",getSectionFilter(mMinPriceEdt,mMaxPriceEdt));
@@ -231,4 +235,21 @@ public class FlterFragment extends Fragment {
         else
             return minPrice + SEPARATOR + maxPrice;
     }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnSearchListener) {
+            mSearchCallback= (OnSearchListener) context;
+        }
+        else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mSearchCallback = null;
+    }
+
 }

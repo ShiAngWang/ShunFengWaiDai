@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,7 +56,7 @@ public class BasicInformationActivity extends AppCompatActivity implements View.
     private LinearLayout NickName_Line;
     private LinearLayout Account_Management;
     private TextView Name,NickNaem;
-    private RoundedImageView Head_Photo;
+    private ImageView Head_Photo;
     private Button Modify,Back;
     private Uri imageUri;
     private Bitmap head_image;
@@ -68,15 +70,12 @@ public class BasicInformationActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_information);
         init();
-        Modify.setEnabled(false);
-        if(UserManager.getInstance().getUser().getHeadImage()!=null){
-            Head_Photo.setImageBitmap(Base64Tool.base64ToBitmap(UserManager.getInstance().getUser().getHeadImage()));
-        }
+        Head_Photo.setImageBitmap(Base64Tool.base64ToBitmap(UserManager.getInstance().getUser().getHeadImage()));
         Name.setText(UserManager.getInstance().getUser().getRealname());
         NickNaem.setText(UserManager.getInstance().getUser().getUserName());
     }
     private void init(){
-        Head_Photo = (RoundedImageView)findViewById(R.id.community_portrait);
+        Head_Photo = (ImageView)findViewById(R.id.community_portrait);
         Name_Line = (LinearLayout)findViewById(R.id.name_line);
         NickName_Line = (LinearLayout)findViewById(R.id.nickname_line);
         Account_Management = (LinearLayout)findViewById(R.id.account_management);
@@ -106,10 +105,11 @@ public class BasicInformationActivity extends AppCompatActivity implements View.
                 params.put("phoneNumber", UserManager.getInstance().getUser().getPhoneNumber());
                 params.put("userName", NickNaem.getText().toString());
                 params.put("password", UserManager.getInstance().getUser().getPassWord());
-                if(head_image == null){
-                    Toast.makeText(BasicInformationActivity.this,"头像为空",Toast.LENGTH_SHORT).show();
+                if(head_image != null){
+                    params.put("headImage", Base64Tool.bitmapToBase64(head_image));
+                }else {
+                    params.put("headImage", UserManager.getInstance().getUser().getHeadImage());
                 }
-                params.put("headImage", Base64Tool.bitmapToBase64(head_image));
                 //Toast.makeText(BasicInformationActivity.this,Base64Tool.bitmapToBase64(head_image),Toast.LENGTH_LONG);
                 params.put("realname", Name.getText().toString());
                 params.put("ID", UserManager.getInstance().getUser().getID());
@@ -117,7 +117,9 @@ public class BasicInformationActivity extends AppCompatActivity implements View.
                     @Override
                     public void onSuccess(int statusCode, Header[] headers,
                                           JSONObject response) {
-                        UserManager.getInstance().getUser().setHeadImage(Base64Tool.bitmapToBase64(head_image));
+                        if(head_image != null) {
+                            UserManager.getInstance().getUser().setHeadImage(Base64Tool.bitmapToBase64(head_image));
+                        }
                         UserManager.getInstance().getUser().setRealname(Name.getText().toString());
                         UserManager.getInstance().getUser().setUserName(NickNaem.getText().toString());
                         // If the response is JSONObject instead of expected JSONArray
@@ -148,26 +150,7 @@ public class BasicInformationActivity extends AppCompatActivity implements View.
                 break;
         }
     }
-    //判定按钮可否点击，若有项为空，则不能点击
-    public void isCliked(){
-        if(TextUtils.isEmpty(Name.getText())){
-            Modify.setEnabled(false);
-            Modify.setBackgroundColor(Color.parseColor("#DEDEDE"));
-            Modify.setTextColor(ContextCompat.getColor(BasicInformationActivity.this, R.color.newgray));
-            Toast.makeText(BasicInformationActivity.this,"姓名不能为空",Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(NickNaem.getText())){
-            Modify.setEnabled(false);
-            Modify.setBackgroundColor(Color.parseColor("#DEDEDE"));
-            Modify.setTextColor(ContextCompat.getColor(BasicInformationActivity.this, R.color.newgray));
-            Toast.makeText(BasicInformationActivity.this,"昵称不能为空",Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Modify.setEnabled(true);
-            Modify.setBackgroundColor(Color.parseColor("#3399FF"));
-            Modify.setTextColor(ContextCompat.getColor(BasicInformationActivity.this, R.color.white));
-        }
-    }
+
     public void GetValues(final int values){
         AlertDialog.Builder builder = new AlertDialog.Builder(BasicInformationActivity.this);
         View view = View.inflate(BasicInformationActivity.this, R.layout.information_alterdialog, null);
@@ -204,7 +187,6 @@ public class BasicInformationActivity extends AppCompatActivity implements View.
                         break;
                 }
                 dialog.dismiss();
-                isCliked();
             }
         });
         button1.setOnClickListener(new View.OnClickListener() {
@@ -270,32 +252,13 @@ public class BasicInformationActivity extends AppCompatActivity implements View.
                 if (resultCode == RESULT_OK) {
                     try {
                         if(null!=data&&null!=data.getData()){
-                            Toast.makeText(BasicInformationActivity.this,"fyjgk1",Toast.LENGTH_SHORT).show();
                             imageUri = data.getData();
-                            int targetW = Head_Photo.getWidth();
-                            int targetH = Head_Photo.getHeight();
-                            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                            bmOptions.inJustDecodeBounds = true;
-                            int PhotoW = bmOptions.outWidth;
-                            int PhotoH = bmOptions.outHeight;
-                            int scaleFactor = Math.min(PhotoW/targetW,PhotoH/targetH);
-                            bmOptions.inJustDecodeBounds =false;
-                            bmOptions.inSampleSize =scaleFactor;
-                            bmOptions.inPurgeable = true;
-                            Bitmap bitmap;
-                            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri),null,bmOptions);
-                            Head_Photo.setImageBitmap(bitmap);
-                            if(bitmap==null){
-                                Toast.makeText(BasicInformationActivity.this,"kongjjkkk",Toast.LENGTH_SHORT).show();
+                            if (imageUri != null) {
+                                setPic(Head_Photo, imageUri);
                             }
-                            head_image = bitmap;
                         }else{
-                            Toast.makeText(BasicInformationActivity.this,"fyjgk2",Toast.LENGTH_SHORT).show();
                             Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
                             Head_Photo.setImageBitmap(bitmap);
-                            if(bitmap==null){
-                                Toast.makeText(BasicInformationActivity.this,"kongjjjjj",Toast.LENGTH_SHORT).show();
-                            }
                             head_image = bitmap;
                         }
                     }  catch (IOException e) {
@@ -345,6 +308,33 @@ public class BasicInformationActivity extends AppCompatActivity implements View.
         }
         // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CAREMA
         activity.startActivityForResult(intent, PHOTO_REQUEST_CAREMA);
+    }
+    private void setPic(ImageView imageView, Uri uri) {
+            //获取目标控件的大小
+            int targetW = Head_Photo.getWidth();
+            int targetH = Head_Photo.getHeight();
+
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            try {
+                //inJustDecodeBounds为true，可以加载源图片的尺寸大小，decodeStream方法返回的bitmap为null
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeStream(getContentResolver().openInputStream(uri), null, bmOptions);
+                // 得到源图片的尺寸
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+                //通过比较获取较小的缩放比列
+                int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+                // 将inJustDecodeBounds置为false，设置bitmap的缩放比列
+                bmOptions.inJustDecodeBounds = false;
+                bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inPurgeable = true;
+                //再次decode获取bitmap
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri), null, bmOptions);
+                head_image = bitmap;
+                Head_Photo.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
     }
 
     /*

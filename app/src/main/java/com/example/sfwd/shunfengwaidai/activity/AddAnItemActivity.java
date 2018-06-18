@@ -40,8 +40,9 @@ public class AddAnItemActivity extends AppCompatActivity  {
                 }else if( rescode==1){
                     Toast.makeText(AddAnItemActivity.this,"姓名太长或号码填写不规范",Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent = new Intent(AddAnItemActivity.this, AddAddressActivity.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(AddAnItemActivity.this, AddAddressActivity.class);
+                    //startActivity(intent);
+                    finish();
                 }
             }
         });

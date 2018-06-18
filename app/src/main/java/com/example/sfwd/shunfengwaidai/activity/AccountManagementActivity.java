@@ -71,7 +71,7 @@ public class AccountManagementActivity extends AppCompatActivity implements View
                     @Override
                     public void onSuccess(int statusCode, Header[] headers,
                                           JSONObject response) {
-                        UserManager.getInstance().getUser().setPassWord("password");
+                        UserManager.getInstance().getUser().setPassWord(Password.getText().toString());
                         // If the response is JSONObject instead of expected JSONArray
                         Toast.makeText(AccountManagementActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
                     }

@@ -19,6 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:background="#808000"
             android:padding="-5dp"
             android:text="代取"
             android:textColor="@color/black"
@@ -29,6 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:background="#808000"
             android:text="代购" />
 
     </LinearLayout>

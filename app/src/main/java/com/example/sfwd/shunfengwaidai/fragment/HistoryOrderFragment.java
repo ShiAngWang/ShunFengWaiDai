@@ -11,9 +11,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.sfwd.shunfengwaidai.R;
-import com.example.sfwd.shunfengwaidai.sun.DetailActivity;
-import com.example.sfwd.shunfengwaidai.adapter.OrderAdapter;
+//import com.example.sfwd.shunfengwaidai.activity.DetailActivity;
 import com.example.sfwd.shunfengwaidai.manager.UserManager;
+import com.example.sfwd.shunfengwaidai.sun.Info;
+import com.example.sfwd.shunfengwaidai.sun.InfoActivity;
+import com.example.sfwd.shunfengwaidai.InfoList;
+import com.example.sfwd.shunfengwaidai.sun.OrderAdapter;
 import com.example.sfwd.shunfengwaidai.untils.MyRestClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -34,74 +37,109 @@ import java.util.Map;
 
 public class HistoryOrderFragment extends Fragment {
     private ListView listView;
+    InfoList data;
+    ArrayList<Info>  list,list2;
+    OrderAdapter orderAdapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_history_order,container,false);
         listView = (ListView)view.findViewById(R.id.listview2);
-
-        RequestParams params = new RequestParams();
-        params.put("userName", UserManager.getInstance().getUser());
-        params.put("state", "finished");
-        MyRestClient.get("/orderService/getExpress", params, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers,
-                                  JSONObject response) {
-                // If the response is JSONObject instead of expected JSONArray
-                try {
-
-                    JSONObject firstEvent = null;
-                    firstEvent = response;
-                    String tweetText = firstEvent.getString("id");
-                    Toast.makeText(getActivity(),tweetText, Toast.LENGTH_SHORT).show();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        data=(InfoList)getActivity().getApplication();
+        list=data.getInfoArrayList();
+        list2=new ArrayList<Info>();
+        for(Info info:list){
+            if(info.getState().equals("已完成")){
+                list2.add(info);
             }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers,
-                                  JSONArray timeline) {
-                // Pull out the first event on the public timeline
-                try {
-                    List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
-                    JSONObject firstEvent = null;
-                    for(int i=0;i<timeline.length();i++) {
-                        firstEvent = (JSONObject) timeline.get(i);
-                        Map<String, Object> map=new HashMap<String, Object>();
-                        String tweetText = firstEvent.getString("id");
-                        map.put("image", R.drawable.logo);
-                        map.put("title","取快递");
-                        map.put("money",firstEvent.getString("reward"));
-                        map.put("receive",firstEvent.getString("positionOfGet"));
-                        map.put("send",firstEvent.getString("positionTo"));
-                        map.put("need",firstEvent.getString("expressInfo"));
-                        map.put("image1",R.mipmap.turn);
-                        list.add(map);
-                    }
-                    // Do something with the response
-
-                    listView.setAdapter(new OrderAdapter(getActivity(), list));
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
-                            Intent intent = new Intent();
-                            intent.setClass(getActivity(), DetailActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    Toast.makeText(getActivity(),"id", Toast.LENGTH_SHORT).show();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
+        }
+        list=list2;
+        init1();
+//        updateDate();
         return view;
     }
+    private void init1(){
+        orderAdapter=new OrderAdapter(getActivity(),list);
+        listView.setAdapter(orderAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Info info=list.get(position);
+                Intent intent = new Intent(getActivity(),InfoActivity.class);
+                intent.putExtra("activity","HistoryOrderFragment");
+                intent.putExtra("info_data", info);
+                startActivity(intent);
+            }
+        } );
+
+    }
+    private void updateDate(){
+        Info info=(Info)getActivity().getIntent().getSerializableExtra("info_data");
+        list.add(info);
+        orderAdapter.notifyDataSetChanged();
+    }
+//    private void init(){
+//        RequestParams params = new RequestParams();
+//        params.put("userName", UserManager.getInstance().getLoginUserName());
+//        params.put("state", "finished");
+//        MyRestClient.get("/orderService/getExpress", params, new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers,
+//                                  JSONObject response) {
+//                // If the response is JSONObject instead of expected JSONArray
+//                try {
+//
+//                    JSONObject firstEvent = null;
+//                    firstEvent = response;
+//                    String tweetText = firstEvent.getString("id");
+//                    Toast.makeText(getActivity(),tweetText, Toast.LENGTH_SHORT).show();
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers,
+//                                  JSONArray timeline) {
+//                // Pull out the first event on the public timeline
+//                try {
+//                    List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+//                    JSONObject firstEvent = null;
+//                    for(int i=0;i<timeline.length();i++) {
+//                        firstEvent = (JSONObject) timeline.get(i);
+//                        Map<String, Object> map=new HashMap<String, Object>();
+//                        String tweetText = firstEvent.getString("id");
+//                        map.put("image", R.drawable.logo);
+//                        map.put("title","取快递");
+//                        map.put("money",firstEvent.getString("reward"));
+//                        map.put("receive",firstEvent.getString("positionOfGet"));
+//                        map.put("send",firstEvent.getString("positionTo"));
+//                        map.put("need",firstEvent.getString("expressInfo"));
+//                        map.put("image1",R.mipmap.turn);
+//                        list.add(map);
+//                    }
+//                    // Do something with the response
+//
+////                    listView.setAdapter(new OrderAdapter(getActivity(), list));
+//                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+//
+//                            Intent intent = new Intent();
+//                            intent.setClass(getActivity(), DetailActivity.class);
+//                            startActivity(intent);
+//                        }
+//                    });
+//                    Toast.makeText(getActivity(),"id", Toast.LENGTH_SHORT).show();
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        });
+//
+//    }
     public List<Map<String, Object>> getData(){
         String[] title = new String[]{"取快递", "取外卖", "代购"};
         String[] money = new String[]{"悬赏:3元", "悬赏:2元", "悬赏:15元"};
@@ -123,4 +161,5 @@ public class HistoryOrderFragment extends Fragment {
         }
         return list;
     }
+
 }
