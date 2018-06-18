@@ -42,7 +42,7 @@ public class AddAnItemActivity extends AppCompatActivity  {
                 }else {
                     Intent intent = new Intent(AddAnItemActivity.this, AddAddressActivity.class);
                     startActivity(intent);
-                    //finish();
+                    finish();
                 }
             }
         });
